@@ -1,0 +1,37 @@
+name: GitGcrImage
+on:
+  push:
+jobs:
+  build:
+    runs-on: ubuntu:latest
+    steps:
+      - name: Login in 
+        uses: docker/login-action@v1
+        with:
+          registry: ghci.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GCRIOTOKEN }}
+      - name: Docker pull and push
+        run: |
+          docker pull gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/controller:v0.53.0
+          docker pull gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/entrypoint:v0.53.0
+          docker pull gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/nop:v0.53.0
+          docker pull gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/sidecarlogresults:v0.53.0
+          docker pull gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/workingdirinit:v0.53.0
+          docker pull gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/events:v0.53.0
+          docker pull gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/resolvers:v0.53.0
+          docker pull gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/webhook:v0.53.0
+          docker tag gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/controller:v0.53.0   ghcr.io/ganweilong/gci_image/tekton-releases/github.com/tektoncd/pipeline/cmd/controller:v0.53.0
+          docker tag gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/entrypoint:v0.53.0   ghcr.io/ganweilong/gci_image/tekton-releases/github.com/tektoncd/pipeline/cmd/entrypoint:v0.53.0 
+          docker tag gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/nop:v0.53.0          ghcr.io/ganweilong/gci_image/tekton-releases/github.com/tektoncd/pipeline/cmd/nop:v0.53.0
+          docker tag gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/sidecarlogresults:v0.53.0 ghcr.io/ganweilong/gci_image/tekton-releases/github.com/tektoncd/pipeline/cmd/sidecarlogresults:v0.53.0
+          docker tag gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/workingdirinit:v0.53.0 ghcr.io/ganweilong/gci_image/tekton-releases/github.com/tektoncd/pipeline/cmd/workingdirinit:v0.53.0
+          docker tag gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/resolvers:v0.53.0   ghcr.io/ganweilong/gci_image/tekton-releases/github.com/tektoncd/pipeline/cmd/resolvers:v0.53.0
+          docker tag gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/webhook:v0.53.0  ghcr.io/ganweilong/gci_image/tekton-releases/github.com/tektoncd/pipeline/cmd/webhook:v0.53.0
+          docker push ghcr.io/ganweilong/gci_image/tekton-releases/github.com/tektoncd/pipeline/cmd/controller:v0.53.0
+          docker push   ghcr.io/ganweilong/gci_image/tekton-releases/github.com/tektoncd/pipeline/cmd/entrypoint:v0.53.0 
+          docker push         ghcr.io/ganweilong/gci_image/tekton-releases/github.com/tektoncd/pipeline/cmd/nop:v0.53.0
+          docker push ghcr.io/ganweilong/gci_image/tekton-releases/github.com/tektoncd/pipeline/cmd/sidecarlogresults:v0.53.0
+          docker push ghcr.io/ganweilong/gci_image/tekton-releases/github.com/tektoncd/pipeline/cmd/workingdirinit:v0.53.0
+          docker push   ghcr.io/ganweilong/gci_image/tekton-releases/github.com/tektoncd/pipeline/cmd/resolvers:v0.53.0
+          docker push  ghcr.io/ganweilong/gci_image/tekton-releases/github.com/tektoncd/pipeline/cmd/webhook:v0.53.0
