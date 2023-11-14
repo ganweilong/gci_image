@@ -37,3 +37,4 @@ jobs:
           docker push ghcr.io/ganweilong/gci_image/tekton-releases/github.com/tektoncd/pipeline/cmd/workingdirinit:v0.53.0
           docker push   ghcr.io/ganweilong/gci_image/tekton-releases/github.com/tektoncd/pipeline/cmd/resolvers:v0.53.0
           docker push  ghcr.io/ganweilong/gci_image/tekton-releases/github.com/tektoncd/pipeline/cmd/webhook:v0.53.0
+          docker push ghcr.io/ganweilong/gci_image/metrics-server/metrics-server:v0.6.4
