@@ -13,6 +13,7 @@ jobs:
           password: ${{ secrets.GCRIOTOKEN }}
       - name: Docker pull and push
         run: |
+          docker pull registry.k8s.io/metrics-server/metrics-server:v0.6.4
           docker pull gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/controller:v0.53.0
           docker pull gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/entrypoint:v0.53.0
           docker pull gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/nop:v0.53.0
@@ -28,6 +29,7 @@ jobs:
           docker tag gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/workingdirinit:v0.53.0 ghcr.io/ganweilong/gci_image/tekton-releases/github.com/tektoncd/pipeline/cmd/workingdirinit:v0.53.0
           docker tag gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/resolvers:v0.53.0   ghcr.io/ganweilong/gci_image/tekton-releases/github.com/tektoncd/pipeline/cmd/resolvers:v0.53.0
           docker tag gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/webhook:v0.53.0  ghcr.io/ganweilong/gci_image/tekton-releases/github.com/tektoncd/pipeline/cmd/webhook:v0.53.0
+          docker tag registry.k8s.io/metrics-server/metrics-server:v0.6.4 ghcr.io/ganweilong/gci_image/metrics-server/metrics-server:v0.6.4
           docker push ghcr.io/ganweilong/gci_image/tekton-releases/github.com/tektoncd/pipeline/cmd/controller:v0.53.0
           docker push   ghcr.io/ganweilong/gci_image/tekton-releases/github.com/tektoncd/pipeline/cmd/entrypoint:v0.53.0 
           docker push         ghcr.io/ganweilong/gci_image/tekton-releases/github.com/tektoncd/pipeline/cmd/nop:v0.53.0
